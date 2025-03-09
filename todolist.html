@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <!-- character encoding -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- responsive design -->
+    <title>To-Do List</title> <!-- page title -->
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; } /* basic styling */
+        #todo-container { max-width: 300px; margin: auto; } /* center container */
+        ul { list-style: none; padding: 0; } /* remove bullet points */
+        li { display: flex; justify-content: space-between; padding: 5px; } /* list item layout */
+        button { margin-left: 10px; } /* button spacing */
+    </style>
+</head>
+<body>
+    <h2>To-Do List</h2> <!-- main heading -->
+    <div id="todo-container"> <!-- task container -->
+        <input type="text" id="taskInput" placeholder="Add a new task"> <!-- input field -->
+        <button onclick="addTask()">Add</button> <!-- add button -->
+        <ul id="taskList"></ul> <!-- task list -->
+    </div>
+    
+    <script>
+        function addTask() { // add task function
+            let taskInput = document.getElementById("taskInput"); // get input
+            let taskText = taskInput.value.trim(); // remove spaces
+            if (taskText === "") return; // ignore empty input
+            
+            let li = document.createElement("li"); // create list item
+            li.innerHTML = `${taskText} <button onclick="removeTask(this)">X</button>`; // add text & button
+            document.getElementById("taskList").appendChild(li); // append to list
+            taskInput.value = ""; // clear input
+        }
+        
+        function removeTask(button) { // remove task function
+            button.parentElement.remove(); // delete task item
+        }
+    </script>
+</body>
+</html>
